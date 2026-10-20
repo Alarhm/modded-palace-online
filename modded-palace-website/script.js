@@ -34,19 +34,9 @@ function el(tag, props = {}, ...children) {
 
 // ---------------------------------------------------------------- boot
 
-async function boot() {
-	const pyodide = await loadPyodide();
-	for (const file of ["palacegames.py", "web_bridge.py"]) {
-		let text = window.PALACE_FILES && window.PALACE_FILES[file];
-		if (text === undefined) {
-			const response = await fetch(file, { cache: "no-store" });
-			if (!response.ok) throw new Error(`Could not load ${file}`);
-			text = await response.text();
-		}
-		pyodide.FS.writeFile(file, text);
-	}
-	pyodide.runPython("import web_bridge");
-	bridge = pyodide.pyimport("web_bridge");
+function boot() {
+	bridge = window.PalaceBridge;
+	if (!bridge) throw new Error("The game engine could not be loaded.");
 	catalog = JSON.parse(bridge.get_catalog());
 	selectedCharacter = catalog.characters[0].name;
 	$("loading").hidden = true;
@@ -55,9 +45,11 @@ async function boot() {
 	if (location.hash === "#rules") openRules();
 }
 
-boot().catch((error) => {
+try {
+	boot();
+} catch (error) {
 	$("loading-text").textContent = "Could not start: " + error.message;
-});
+}
 
 // ---------------------------------------------------------------- setup screen
 
