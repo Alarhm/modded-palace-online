@@ -5,7 +5,11 @@
 	--gold: #d7b66d;
 	--red: #a3342c;
 }
-* { box-sizing: border-box; }
+
+* {
+    box-sizing: border-box;
+}
+
 body {
 	margin: 0;
 	background: var(--felt);
@@ -13,10 +17,26 @@ body {
 	font-family: Georgia, "Times New Roman", serif;
 	min-height: 100vh;
 }
-h1, h2, h3 { margin: 0.4em 0; }
-main { max-width: 1100px; margin: 0 auto; padding: 16px; }
-[hidden] { display: none !important; }
-#loading { text-align: center; padding: 20vh 16px; }
+
+h1, h2, h3 {
+    margin: 0.4em 0;
+}
+
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 16px;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+#loading {
+    text-align: center;
+    padding: 20vh 16px;
+}
+
 button {
 	font: inherit;
 	background: var(--cream);
@@ -26,9 +46,22 @@ button {
 	padding: 8px 14px;
 	cursor: pointer;
 }
-button:hover:enabled { background: var(--gold); }
-button:disabled { opacity: 0.45; cursor: default; }
-button.primary { background: var(--gold); font-weight: bold; padding: 10px 22px; }
+
+button:hover:enabled {
+    background: var(--gold);
+}
+
+button:disabled {
+    opacity: 0.45;
+    cursor: default;
+}
+
+button.primary {
+    background: var(--gold);
+    font-weight: bold;
+    padding: 10px 22px;
+}
+
 input, select {
 	font: inherit;
 	padding: 4px 6px;
